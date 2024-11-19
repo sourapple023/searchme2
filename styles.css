@@ -83,3 +83,37 @@ footer {
     color: #888; /* Subtle color for footer text */
     text-align: center;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Smaller heading for tablets */
+    }
+
+    input[type="text"] {
+        width: 250px; /* Narrower input for tablets */
+    }
+
+    button {
+        padding: 12px 18px; /* Smaller button for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem; /* Even smaller heading for mobile */
+    }
+
+    input[type="text"] {
+        width: 200px; /* Narrower input for mobile */
+        padding: 12px; /* Smaller padding for mobile */
+    }
+
+    button {
+        padding: 12px 15px; /* Smaller button for mobile */
+    }
+
+    .search-container {
+        padding: 20px 30px; /* Smaller container padding for mobile */
+    }
+}
