@@ -38,6 +38,17 @@ h1.logo {
     color: #00ADB5;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 8px rgba(0, 173, 181, 0.8), 0 0 12px rgba(0, 173, 181, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(0, 173, 181, 1), 0 0 16px rgba(0, 173, 181, 0.8);
+    }
 }
 
 #time, #weather {
