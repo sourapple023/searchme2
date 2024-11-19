@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Update the time every second
     const updateTime = () => {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('time').textContent = `Time: ${hours}:${minutes}:${seconds}`;
+        const timeElement = document.getElementById('time');
+        if (timeElement) {
+            timeElement.innerHTML = `<strong>Current Time:</strong> ${new Date().toLocaleTimeString()}`;
+        }
     };
     setInterval(updateTime, 1000);
     updateTime();
 
-    // Fetch weather data
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat, lon) => {
         const apiKey = 'a153001688bf11fc5414657944da58b2';
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=${apiKey}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
 
         try {
             const response = await fetch(url);
@@ -21,24 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const { temp } = data.main;
             const { description } = data.weather[0];
-            document.getElementById('weather').textContent = `Weather: ${temp}°F, ${description}`;
+            const location = `${data.name}`;
+
+            document.getElementById('weather').innerHTML = `
+                <strong>Weather in ${location}:</strong> ${temp}°F, ${description}
+            `;
         } catch (error) {
             console.error('Error fetching weather data:', error);
-            document.getElementById('weather').textContent = 'Unable to fetch weather data';
+            document.getElementById('weather').innerHTML = '<strong>Unable to fetch weather data.</strong>';
         }
     };
-    fetchWeather();
 
-    // Handle search form submission
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const searchInput = document.getElementById('searchInput').value.trim();
-        if (searchInput) {
-            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
-            window.open(googleSearchUrl, '_blank');
+    const getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => fetchWeather(position.coords.latitude, position.coords.longitude),
+                error => {
+                    console.error('Error getting location:', error);
+                    document.getElementById('weather').innerHTML = '<strong>Unable to retrieve location.</strong>';
+                }
+            );
         } else {
-            alert('Please enter a search term.');
+            document.getElementById('weather').innerHTML = '<strong>Geolocation is not supported by this browser.</strong>';
         }
-    });
+    };
+
+    getLocation();
+});
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const searchInput = document.getElementById('searchInput').value.trim();
+    if (searchInput) {
+        const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
+        window.open(googleSearchUrl, '_blank');
+    } else {
+        alert('Please enter a search term.');
+    }
 });

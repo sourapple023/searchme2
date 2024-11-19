@@ -7,10 +7,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1E1F26, #2C2F38); /* Gradient background for modern look */
+    background: linear-gradient(135deg, #1E1F26, #2C2F38);
     background-size: 200% 200%;
     animation: gradientAnimation 10s ease infinite;
-    color: #EAEAEA; /* Light text color for readability */
+    color: #EAEAEA;
 }
 
 @keyframes gradientAnimation {
@@ -19,58 +19,55 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.info-container {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 800px;
-    margin-bottom: 20px;
-    color: #00ADB5; /* Vibrant accent color for text */
-}
-
-#time, #weather {
-    font-size: 1.2rem;
-    text-align: center;
-    flex: 1;
-}
-
 .search-container {
     text-align: center;
-    background: rgba(44, 47, 56, 0.9); /* Slightly lighter, translucent background for container */
-    padding: 30px 40px;
-    border-radius: 15px; /* More rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(44, 47, 56, 0.9);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .search-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #00ADB5; /* Vibrant accent color for heading */
+h1.logo {
+    font-size: 3rem;
+    color: #00ADB5;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#time, #weather {
+    font-size: 1rem;
+    margin: 10px 0;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 form {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 25px; /* More rounded corners */
+    border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 input[type="text"] {
-    width: 300px;
-    padding: 15px;
+    width: 350px;
+    padding: 15px 20px;
     font-size: 1rem;
     border: none;
     outline: none;
-    border-radius: 25px 0 0 25px;
-    background-color: #3B3F4A; /* Darker background for input */
+    border-radius: 30px 0 0 30px;
+    background-color: #3B3F4A;
     color: #EAEAEA;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -87,23 +84,23 @@ input[type="text"]::placeholder {
 }
 
 input[type="text"]:focus {
-    background-color: #4C5162; /* Slightly lighter background for focus */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Inner shadow */
+    background-color: #4C5162;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 button {
     padding: 15px 25px;
     font-size: 1rem;
     border: none;
-    background-color: #00ADB5; /* Accent color for button */
+    background-color: #00ADB5;
     color: white;
     cursor: pointer;
-    border-radius: 0 25px 25px 0;
+    border-radius: 0 30px 30px 0;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #00CED1; /* Lighter accent color for hover */
+    background-color: #00CED1;
     transform: translateY(-2px);
 }
 
@@ -114,50 +111,40 @@ button:active {
 footer {
     margin-top: 20px;
     font-size: 0.8rem;
-    color: #888; /* Subtle color for footer text */
+    color: #888;
     text-align: center;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem; /* Smaller heading for tablets */
+    h1.logo {
+        font-size: 2.5rem;
     }
 
     input[type="text"] {
-        width: 250px; /* Narrower input for tablets */
+        width: 250px;
     }
 
     button {
-        padding: 12px 18px; /* Smaller button for tablets */
+        padding: 12px 18px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem; /* Even smaller heading for mobile */
+    h1.logo {
+        font-size: 2rem;
     }
 
     input[type="text"] {
-        width: 200px; /* Narrower input for mobile */
-        padding: 12px; /* Smaller padding for mobile */
+        width: 200px;
+        padding: 12px;
     }
 
     button {
-        padding: 12px 15px; /* Smaller button for mobile */
+        padding: 12px 15px;
     }
 
     .search-container {
-        padding: 20px 30px; /* Smaller container padding for mobile */
-    }
-
-    .info-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #time, #weather {
-        font-size: 1rem;
-        margin-bottom: 10px;
+        padding: 30px 40px;
     }
 }
